@@ -16,6 +16,7 @@ ruff = "^0.15.13"
 bs4 = "^0.0.2"
 requests = "^2.34.2"
 aiohttp = "^3.13.5"
+mkdocs-material = "^9.7.6"
 
 
 [build-system]
