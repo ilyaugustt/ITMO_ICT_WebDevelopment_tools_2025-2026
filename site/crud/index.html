@@ -1,0 +1,2012 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Документация Travel API — лабораторная работа №1">
+      
+      
+      
+        <link rel="canonical" href="https://ilyaugustt.github.io/ITMO_ICT_WebDevelopment_tools_2025-2026/crud/">
+      
+      
+        <link rel="prev" href="../api/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>CRUD операции - Travel API Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#crud" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href=".." title="Travel API Documentation" class="md-header__button md-logo" aria-label="Travel API Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Travel API Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CRUD операции
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ilyaugustt/ITMO_ICT_WebDevelopment_tools_2025-2026" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Dzhavatov_Ilyas
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Travel API Documentation" class="md-nav__button md-logo" aria-label="Travel API Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Travel API Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ilyaugustt/ITMO_ICT_WebDevelopment_tools_2025-2026" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Dzhavatov_Ilyas
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Установка и запуск
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Модели данных
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auth/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Аутентификация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Endpoints
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRUD операции
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRUD операции
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Обзор
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usercrud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Класс UserCRUD
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Класс UserCRUD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#__init__self-db-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __init__(self, db: Session)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_user_by_idself-user_id-int-user-none" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_user_by_id(self, user_id: int) -&gt; User | None
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_user_by_usernameself-username-str-optionaluser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_user_by_username(self, username: str) -&gt; Optional[User]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_usersself-skip-int-0-limit-int-100-active-bool-true-listuserbase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_users(self, skip: int = 0, limit: int = 100, active: bool = True) -&gt; list[UserBase]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create_userself-username-email-hashed_password-kwargs-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        create_user(self, username, email, hashed_password, **kwargs) -&gt; User
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update_userself-user-user-kwargs-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        update_user(self, user: User, **kwargs) -&gt; User
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deactivate_userself-user-user-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        deactivate_user(self, user: User) -&gt; User
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add_preferred_destinationself-user-user-destination-destination-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        add_preferred_destination(self, user: User, destination: Destination) -&gt; User
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove_preferred_destinationself-user-user-destination-destination-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        remove_preferred_destination(self, user: User, destination: Destination) -&gt; User
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete_userself-user-user-none" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        delete_user(self, user: User) -&gt; None
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify_passwordself-user-user-password-str-bool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        verify_password(self, user: User, password: str) -&gt; bool
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change_passwordself-user-user-new_password-str-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        change_password(self, user: User, new_password: str) -&gt; User
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Функции для Trip
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Функции для Trip">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_trip_by_iddb-trip_id-trip-none" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_trip_by_id(db, trip_id) -&gt; Trip | None
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_tripsdb-skip0-limit100-statusnone-creator_idnone-listtrip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_trips(db, skip=0, limit=100, status=None, creator_id=None) -&gt; list[Trip]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_active_trips_cruddb-skip0-limit100-listtrip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_active_trips_crud(db, skip=0, limit=100) -&gt; list[Trip]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search_tripsdb-start_locationnone-end_locationnone-start_date_fromnone-start_date_tonone-listtrip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        search_trips(db, start_location=None, end_location=None, start_date_from=None, start_date_to=None) -&gt; list[Trip]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create_tripdb-title-description-start_location-end_location-start_date-end_date-creator_id-kwargs-trip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        create_trip(db, title, description, start_location, end_location, start_date, end_date, creator_id, **kwargs) -&gt; Trip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update_tripdb-trip-trip-kwargs-trip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        update_trip(db, trip: Trip, **kwargs) -&gt; Trip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update_trip_statusdb-trip-trip-new_status-str-trip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        update_trip_status(db, trip: Trip, new_status: str) -&gt; Trip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add_destination_to_tripdb-trip-trip-destination-destination-trip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        add_destination_to_trip(db, trip: Trip, destination: Destination) -&gt; Trip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove_destination_from_tripdb-trip-trip-destination-destination-trip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        remove_destination_from_trip(db, trip: Trip, destination: Destination) -&gt; Trip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete_tripdb-trip-trip-none" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        delete_trip(db, trip: Trip) -&gt; None
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#travelrequest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Функции для TravelRequest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Функции для TravelRequest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_travel_requestdb-trip_id-user_id-optionaltravelrequest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_travel_request(db, trip_id, user_id) -&gt; Optional[TravelRequest]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_travel_requests_for_tripdb-trip_id-statusnone-listtravelrequest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_travel_requests_for_trip(db, trip_id, status=None) -&gt; List[TravelRequest]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_travel_requests_for_userdb-user_id-statusnone-listtravelrequest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_travel_requests_for_user(db, user_id, status=None) -&gt; List[TravelRequest]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create_travel_requestdb-trip_id-user_id-messagenone-travelrequest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        create_travel_request(db, trip_id, user_id, message=None) -&gt; TravelRequest
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update_travel_request_statusdb-request-travelrequest-new_status-str-travelrequest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        update_travel_request_status(db, request: TravelRequest, new_status: str) -&gt; TravelRequest
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete_travel_requestdb-request-travelrequest-none" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        delete_travel_request(db, request: TravelRequest) -&gt; None
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#destination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Функции для Destination
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Функции для Destination">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_destination_by_iddb-destination_id-optionaldestination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_destination_by_id(db, destination_id) -&gt; Optional[Destination]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_destination_by_namedb-name-destination-none" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_destination_by_name(db, name) -&gt; Destination | None
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_destinationsdb-skip0-limit100-countrynone-listdestinationindb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_destinations(db, skip=0, limit=100, country=None) -&gt; list[DestinationInDB]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search_destinationsdb-query_text-listdestination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        search_destinations(db, query_text) -&gt; List[Destination]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create_destinationdb-name-country-descriptionnone-latitudenone-longitudenone-destination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        create_destination(db, name, country, description=None, latitude=None, longitude=None) -&gt; Destination
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update_destinationdb-destination-destination-kwargs-destination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        update_destination(db, destination: Destination, **kwargs) -&gt; Destination
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update_popularitydb-destination-destination-incrementtrue-destination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        update_popularity(db, destination: Destination, increment=True) -&gt; Destination
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete_destinationdb-destination-destination-none" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        delete_destination(db, destination: Destination) -&gt; None
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#message" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Функции для Message
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Функции для Message">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_message_by_iddb-message_id-optionalmessage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_message_by_id(db, message_id) -&gt; Optional[Message]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_messages_for_tripdb-trip_id-skip0-limit50-listmessage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_messages_for_trip(db, trip_id, skip=0, limit=50) -&gt; List[Message]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_messages_between_usersdb-user1_id-user2_id-trip_idnone-skip0-limit50-listmessage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_messages_between_users(db, user1_id, user2_id, trip_id=None, skip=0, limit=50) -&gt; List[Message]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create_messagedb-content-trip_id-sender_id-receiver_id-message" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        create_message(db, content, trip_id, sender_id, receiver_id) -&gt; Message
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete_messagedb-message-message-none" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        delete_message(db, message: Message) -&gt; None
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Функции для Review
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Функции для Review">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_review_by_iddb-review_id-optionalreview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_review_by_id(db, review_id) -&gt; Optional[Review]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_reviews_for_userdb-user_id-skip0-limit100-listreview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_reviews_for_user(db, user_id, skip=0, limit=100) -&gt; List[Review]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_reviews_by_reviewerdb-reviewer_id-skip0-limit100-listreview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_reviews_by_reviewer(db, reviewer_id, skip=0, limit=100) -&gt; List[Review]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_review_for_tripdb-trip_id-reviewer_id-reviewed_user_id-optionalreview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_review_for_trip(db, trip_id, reviewer_id, reviewed_user_id) -&gt; Optional[Review]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create_reviewdb-trip_id-reviewer_id-reviewed_user_id-rating-commentnone-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        create_review(db, trip_id, reviewer_id, reviewed_user_id, rating, comment=None) -&gt; Review
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update_reviewdb-review-review-kwargs-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        update_review(db, review: Review, **kwargs) -&gt; Review
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete_reviewdb-review-review-none" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        delete_review(db, review: Review) -&gt; None
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_user_ratingdb-user_id-float" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_user_rating(db, user_id) -&gt; float
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Обзор
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usercrud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Класс UserCRUD
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Класс UserCRUD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#__init__self-db-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __init__(self, db: Session)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_user_by_idself-user_id-int-user-none" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_user_by_id(self, user_id: int) -&gt; User | None
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_user_by_usernameself-username-str-optionaluser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_user_by_username(self, username: str) -&gt; Optional[User]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_usersself-skip-int-0-limit-int-100-active-bool-true-listuserbase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_users(self, skip: int = 0, limit: int = 100, active: bool = True) -&gt; list[UserBase]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create_userself-username-email-hashed_password-kwargs-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        create_user(self, username, email, hashed_password, **kwargs) -&gt; User
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update_userself-user-user-kwargs-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        update_user(self, user: User, **kwargs) -&gt; User
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deactivate_userself-user-user-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        deactivate_user(self, user: User) -&gt; User
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add_preferred_destinationself-user-user-destination-destination-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        add_preferred_destination(self, user: User, destination: Destination) -&gt; User
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove_preferred_destinationself-user-user-destination-destination-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        remove_preferred_destination(self, user: User, destination: Destination) -&gt; User
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete_userself-user-user-none" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        delete_user(self, user: User) -&gt; None
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify_passwordself-user-user-password-str-bool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        verify_password(self, user: User, password: str) -&gt; bool
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change_passwordself-user-user-new_password-str-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        change_password(self, user: User, new_password: str) -&gt; User
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Функции для Trip
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Функции для Trip">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_trip_by_iddb-trip_id-trip-none" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_trip_by_id(db, trip_id) -&gt; Trip | None
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_tripsdb-skip0-limit100-statusnone-creator_idnone-listtrip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_trips(db, skip=0, limit=100, status=None, creator_id=None) -&gt; list[Trip]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_active_trips_cruddb-skip0-limit100-listtrip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_active_trips_crud(db, skip=0, limit=100) -&gt; list[Trip]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search_tripsdb-start_locationnone-end_locationnone-start_date_fromnone-start_date_tonone-listtrip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        search_trips(db, start_location=None, end_location=None, start_date_from=None, start_date_to=None) -&gt; list[Trip]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create_tripdb-title-description-start_location-end_location-start_date-end_date-creator_id-kwargs-trip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        create_trip(db, title, description, start_location, end_location, start_date, end_date, creator_id, **kwargs) -&gt; Trip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update_tripdb-trip-trip-kwargs-trip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        update_trip(db, trip: Trip, **kwargs) -&gt; Trip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update_trip_statusdb-trip-trip-new_status-str-trip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        update_trip_status(db, trip: Trip, new_status: str) -&gt; Trip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add_destination_to_tripdb-trip-trip-destination-destination-trip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        add_destination_to_trip(db, trip: Trip, destination: Destination) -&gt; Trip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove_destination_from_tripdb-trip-trip-destination-destination-trip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        remove_destination_from_trip(db, trip: Trip, destination: Destination) -&gt; Trip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete_tripdb-trip-trip-none" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        delete_trip(db, trip: Trip) -&gt; None
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#travelrequest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Функции для TravelRequest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Функции для TravelRequest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_travel_requestdb-trip_id-user_id-optionaltravelrequest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_travel_request(db, trip_id, user_id) -&gt; Optional[TravelRequest]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_travel_requests_for_tripdb-trip_id-statusnone-listtravelrequest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_travel_requests_for_trip(db, trip_id, status=None) -&gt; List[TravelRequest]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_travel_requests_for_userdb-user_id-statusnone-listtravelrequest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_travel_requests_for_user(db, user_id, status=None) -&gt; List[TravelRequest]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create_travel_requestdb-trip_id-user_id-messagenone-travelrequest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        create_travel_request(db, trip_id, user_id, message=None) -&gt; TravelRequest
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update_travel_request_statusdb-request-travelrequest-new_status-str-travelrequest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        update_travel_request_status(db, request: TravelRequest, new_status: str) -&gt; TravelRequest
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete_travel_requestdb-request-travelrequest-none" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        delete_travel_request(db, request: TravelRequest) -&gt; None
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#destination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Функции для Destination
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Функции для Destination">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_destination_by_iddb-destination_id-optionaldestination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_destination_by_id(db, destination_id) -&gt; Optional[Destination]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_destination_by_namedb-name-destination-none" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_destination_by_name(db, name) -&gt; Destination | None
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_destinationsdb-skip0-limit100-countrynone-listdestinationindb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_destinations(db, skip=0, limit=100, country=None) -&gt; list[DestinationInDB]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search_destinationsdb-query_text-listdestination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        search_destinations(db, query_text) -&gt; List[Destination]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create_destinationdb-name-country-descriptionnone-latitudenone-longitudenone-destination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        create_destination(db, name, country, description=None, latitude=None, longitude=None) -&gt; Destination
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update_destinationdb-destination-destination-kwargs-destination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        update_destination(db, destination: Destination, **kwargs) -&gt; Destination
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update_popularitydb-destination-destination-incrementtrue-destination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        update_popularity(db, destination: Destination, increment=True) -&gt; Destination
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete_destinationdb-destination-destination-none" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        delete_destination(db, destination: Destination) -&gt; None
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#message" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Функции для Message
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Функции для Message">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_message_by_iddb-message_id-optionalmessage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_message_by_id(db, message_id) -&gt; Optional[Message]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_messages_for_tripdb-trip_id-skip0-limit50-listmessage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_messages_for_trip(db, trip_id, skip=0, limit=50) -&gt; List[Message]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_messages_between_usersdb-user1_id-user2_id-trip_idnone-skip0-limit50-listmessage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_messages_between_users(db, user1_id, user2_id, trip_id=None, skip=0, limit=50) -&gt; List[Message]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create_messagedb-content-trip_id-sender_id-receiver_id-message" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        create_message(db, content, trip_id, sender_id, receiver_id) -&gt; Message
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete_messagedb-message-message-none" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        delete_message(db, message: Message) -&gt; None
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Функции для Review
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Функции для Review">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_review_by_iddb-review_id-optionalreview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_review_by_id(db, review_id) -&gt; Optional[Review]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_reviews_for_userdb-user_id-skip0-limit100-listreview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_reviews_for_user(db, user_id, skip=0, limit=100) -&gt; List[Review]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_reviews_by_reviewerdb-reviewer_id-skip0-limit100-listreview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_reviews_by_reviewer(db, reviewer_id, skip=0, limit=100) -&gt; List[Review]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_review_for_tripdb-trip_id-reviewer_id-reviewed_user_id-optionalreview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_review_for_trip(db, trip_id, reviewer_id, reviewed_user_id) -&gt; Optional[Review]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create_reviewdb-trip_id-reviewer_id-reviewed_user_id-rating-commentnone-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        create_review(db, trip_id, reviewer_id, reviewed_user_id, rating, comment=None) -&gt; Review
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update_reviewdb-review-review-kwargs-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        update_review(db, review: Review, **kwargs) -&gt; Review
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete_reviewdb-review-review-none" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        delete_review(db, review: Review) -&gt; None
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_user_ratingdb-user_id-float" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_user_rating(db, user_id) -&gt; float
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="crud">CRUD операции<a class="headerlink" href="#crud" title="Permanent link">&para;</a></h1>
+<h2 id="_1">Обзор<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>Проект использует паттерн Repository для работы с базой данных. Основные CRUD операции инкапсулированы в классах и функциях.</p>
+<h2 id="usercrud">Класс UserCRUD<a class="headerlink" href="#usercrud" title="Permanent link">&para;</a></h2>
+<h3 id="__init__self-db-session"><code>__init__(self, db: Session)</code><a class="headerlink" href="#__init__self-db-session" title="Permanent link">&para;</a></h3>
+<p>Инициализация с сессией базы данных.</p>
+<h3 id="get_user_by_idself-user_id-int-user-none"><code>get_user_by_id(self, user_id: int) -&gt; User | None</code><a class="headerlink" href="#get_user_by_idself-user_id-int-user-none" title="Permanent link">&para;</a></h3>
+<p>Получение пользователя по ID.</p>
+<p><strong>Параметры:</strong>
+- <code>user_id</code>: ID пользователя</p>
+<p><strong>Возвращает:</strong> объект <code>User</code> или <code>None</code></p>
+<h3 id="get_user_by_usernameself-username-str-optionaluser"><code>get_user_by_username(self, username: str) -&gt; Optional[User]</code><a class="headerlink" href="#get_user_by_usernameself-username-str-optionaluser" title="Permanent link">&para;</a></h3>
+<p>Получение пользователя по имени.</p>
+<p><strong>Параметры:</strong>
+- <code>username</code>: имя пользователя</p>
+<p><strong>Возвращает:</strong> объект <code>User</code> или <code>None</code></p>
+<h3 id="get_usersself-skip-int-0-limit-int-100-active-bool-true-listuserbase"><code>get_users(self, skip: int = 0, limit: int = 100, active: bool = True) -&gt; list[UserBase]</code><a class="headerlink" href="#get_usersself-skip-int-0-limit-int-100-active-bool-true-listuserbase" title="Permanent link">&para;</a></h3>
+<p>Получение списка пользователей.</p>
+<p><strong>Параметры:</strong>
+- <code>skip</code>: количество пропускаемых записей
+- <code>limit</code>: максимальное количество записей
+- <code>active</code>: фильтровать по активности</p>
+<p><strong>Возвращает:</strong> список <code>UserBase</code></p>
+<h3 id="create_userself-username-email-hashed_password-kwargs-user"><code>create_user(self, username, email, hashed_password, **kwargs) -&gt; User</code><a class="headerlink" href="#create_userself-username-email-hashed_password-kwargs-user" title="Permanent link">&para;</a></h3>
+<p>Создание нового пользователя.</p>
+<p><strong>Параметры:</strong>
+- <code>username</code>: имя пользователя
+- <code>email</code>: email
+- <code>hashed_password</code>: хэш пароля
+- <code>full_name</code>: полное имя (опционально)
+- <code>bio</code>: о себе (опционально)
+- <code>age</code>: возраст (опционально)
+- <code>gender</code>: пол (опционально)
+- <code>skills</code>: навыки (опционально)
+- <code>experience</code>: опыт (опционально)
+- <code>preferences</code>: предпочтения (опционально)
+- <code>avatar_url</code>: URL аватара (опционально)</p>
+<h3 id="update_userself-user-user-kwargs-user"><code>update_user(self, user: User, **kwargs) -&gt; User</code><a class="headerlink" href="#update_userself-user-user-kwargs-user" title="Permanent link">&para;</a></h3>
+<p>Обновление пользователя.</p>
+<p><strong>Параметры:</strong>
+- <code>user</code>: объект пользователя
+- <code>**kwargs</code>: поля для обновления</p>
+<h3 id="deactivate_userself-user-user-user"><code>deactivate_user(self, user: User) -&gt; User</code><a class="headerlink" href="#deactivate_userself-user-user-user" title="Permanent link">&para;</a></h3>
+<p>Деактивация пользователя.</p>
+<h3 id="add_preferred_destinationself-user-user-destination-destination-user"><code>add_preferred_destination(self, user: User, destination: Destination) -&gt; User</code><a class="headerlink" href="#add_preferred_destinationself-user-user-destination-destination-user" title="Permanent link">&para;</a></h3>
+<p>Добавление предпочтительного направления.</p>
+<h3 id="remove_preferred_destinationself-user-user-destination-destination-user"><code>remove_preferred_destination(self, user: User, destination: Destination) -&gt; User</code><a class="headerlink" href="#remove_preferred_destinationself-user-user-destination-destination-user" title="Permanent link">&para;</a></h3>
+<p>Удаление предпочтительного направления.</p>
+<h3 id="delete_userself-user-user-none"><code>delete_user(self, user: User) -&gt; None</code><a class="headerlink" href="#delete_userself-user-user-none" title="Permanent link">&para;</a></h3>
+<p>Удаление пользователя.</p>
+<h3 id="verify_passwordself-user-user-password-str-bool"><code>verify_password(self, user: User, password: str) -&gt; bool</code><a class="headerlink" href="#verify_passwordself-user-user-password-str-bool" title="Permanent link">&para;</a></h3>
+<p>Проверка пароля.</p>
+<h3 id="change_passwordself-user-user-new_password-str-user"><code>change_password(self, user: User, new_password: str) -&gt; User</code><a class="headerlink" href="#change_passwordself-user-user-new_password-str-user" title="Permanent link">&para;</a></h3>
+<p>Смена пароля.</p>
+<h2 id="trip">Функции для Trip<a class="headerlink" href="#trip" title="Permanent link">&para;</a></h2>
+<h3 id="get_trip_by_iddb-trip_id-trip-none"><code>get_trip_by_id(db, trip_id) -&gt; Trip | None</code><a class="headerlink" href="#get_trip_by_iddb-trip_id-trip-none" title="Permanent link">&para;</a></h3>
+<p>Получение поездки по ID с загруженными связями (creator, destinations, travel_requests).</p>
+<h3 id="get_tripsdb-skip0-limit100-statusnone-creator_idnone-listtrip"><code>get_trips(db, skip=0, limit=100, status=None, creator_id=None) -&gt; list[Trip]</code><a class="headerlink" href="#get_tripsdb-skip0-limit100-statusnone-creator_idnone-listtrip" title="Permanent link">&para;</a></h3>
+<p>Получение списка поездок с фильтрацией.</p>
+<h3 id="get_active_trips_cruddb-skip0-limit100-listtrip"><code>get_active_trips_crud(db, skip=0, limit=100) -&gt; list[Trip]</code><a class="headerlink" href="#get_active_trips_cruddb-skip0-limit100-listtrip" title="Permanent link">&para;</a></h3>
+<p>Получение активных поездок (planned и end_date &gt;= сегодня).</p>
+<h3 id="search_tripsdb-start_locationnone-end_locationnone-start_date_fromnone-start_date_tonone-listtrip"><code>search_trips(db, start_location=None, end_location=None, start_date_from=None, start_date_to=None) -&gt; list[Trip]</code><a class="headerlink" href="#search_tripsdb-start_locationnone-end_locationnone-start_date_fromnone-start_date_tonone-listtrip" title="Permanent link">&para;</a></h3>
+<p>Поиск поездок по параметрам.</p>
+<h3 id="create_tripdb-title-description-start_location-end_location-start_date-end_date-creator_id-kwargs-trip"><code>create_trip(db, title, description, start_location, end_location, start_date, end_date, creator_id, **kwargs) -&gt; Trip</code><a class="headerlink" href="#create_tripdb-title-description-start_location-end_location-start_date-end_date-creator_id-kwargs-trip" title="Permanent link">&para;</a></h3>
+<p>Создание поездки.</p>
+<h3 id="update_tripdb-trip-trip-kwargs-trip"><code>update_trip(db, trip: Trip, **kwargs) -&gt; Trip</code><a class="headerlink" href="#update_tripdb-trip-trip-kwargs-trip" title="Permanent link">&para;</a></h3>
+<p>Обновление поездки.</p>
+<h3 id="update_trip_statusdb-trip-trip-new_status-str-trip"><code>update_trip_status(db, trip: Trip, new_status: str) -&gt; Trip</code><a class="headerlink" href="#update_trip_statusdb-trip-trip-new_status-str-trip" title="Permanent link">&para;</a></h3>
+<p>Обновление статуса поездки.</p>
+<h3 id="add_destination_to_tripdb-trip-trip-destination-destination-trip"><code>add_destination_to_trip(db, trip: Trip, destination: Destination) -&gt; Trip</code><a class="headerlink" href="#add_destination_to_tripdb-trip-trip-destination-destination-trip" title="Permanent link">&para;</a></h3>
+<p>Добавление направления к поездке.</p>
+<h3 id="remove_destination_from_tripdb-trip-trip-destination-destination-trip"><code>remove_destination_from_trip(db, trip: Trip, destination: Destination) -&gt; Trip</code><a class="headerlink" href="#remove_destination_from_tripdb-trip-trip-destination-destination-trip" title="Permanent link">&para;</a></h3>
+<p>Удаление направления из поездки.</p>
+<h3 id="delete_tripdb-trip-trip-none"><code>delete_trip(db, trip: Trip) -&gt; None</code><a class="headerlink" href="#delete_tripdb-trip-trip-none" title="Permanent link">&para;</a></h3>
+<p>Удаление поездки.</p>
+<h2 id="travelrequest">Функции для TravelRequest<a class="headerlink" href="#travelrequest" title="Permanent link">&para;</a></h2>
+<h3 id="get_travel_requestdb-trip_id-user_id-optionaltravelrequest"><code>get_travel_request(db, trip_id, user_id) -&gt; Optional[TravelRequest]</code><a class="headerlink" href="#get_travel_requestdb-trip_id-user_id-optionaltravelrequest" title="Permanent link">&para;</a></h3>
+<p>Получение запроса для поездки и пользователя.</p>
+<h3 id="get_travel_requests_for_tripdb-trip_id-statusnone-listtravelrequest"><code>get_travel_requests_for_trip(db, trip_id, status=None) -&gt; List[TravelRequest]</code><a class="headerlink" href="#get_travel_requests_for_tripdb-trip_id-statusnone-listtravelrequest" title="Permanent link">&para;</a></h3>
+<p>Получение запросов для поездки.</p>
+<h3 id="get_travel_requests_for_userdb-user_id-statusnone-listtravelrequest"><code>get_travel_requests_for_user(db, user_id, status=None) -&gt; List[TravelRequest]</code><a class="headerlink" href="#get_travel_requests_for_userdb-user_id-statusnone-listtravelrequest" title="Permanent link">&para;</a></h3>
+<p>Получение запросов пользователя.</p>
+<h3 id="create_travel_requestdb-trip_id-user_id-messagenone-travelrequest"><code>create_travel_request(db, trip_id, user_id, message=None) -&gt; TravelRequest</code><a class="headerlink" href="#create_travel_requestdb-trip_id-user_id-messagenone-travelrequest" title="Permanent link">&para;</a></h3>
+<p>Создание запроса на участие.</p>
+<h3 id="update_travel_request_statusdb-request-travelrequest-new_status-str-travelrequest"><code>update_travel_request_status(db, request: TravelRequest, new_status: str) -&gt; TravelRequest</code><a class="headerlink" href="#update_travel_request_statusdb-request-travelrequest-new_status-str-travelrequest" title="Permanent link">&para;</a></h3>
+<p>Обновление статуса запроса.</p>
+<h3 id="delete_travel_requestdb-request-travelrequest-none"><code>delete_travel_request(db, request: TravelRequest) -&gt; None</code><a class="headerlink" href="#delete_travel_requestdb-request-travelrequest-none" title="Permanent link">&para;</a></h3>
+<p>Удаление запроса.</p>
+<h2 id="destination">Функции для Destination<a class="headerlink" href="#destination" title="Permanent link">&para;</a></h2>
+<h3 id="get_destination_by_iddb-destination_id-optionaldestination"><code>get_destination_by_id(db, destination_id) -&gt; Optional[Destination]</code><a class="headerlink" href="#get_destination_by_iddb-destination_id-optionaldestination" title="Permanent link">&para;</a></h3>
+<p>Получение направления по ID с загруженными связями.</p>
+<h3 id="get_destination_by_namedb-name-destination-none"><code>get_destination_by_name(db, name) -&gt; Destination | None</code><a class="headerlink" href="#get_destination_by_namedb-name-destination-none" title="Permanent link">&para;</a></h3>
+<p>Получение направления по имени.</p>
+<h3 id="get_destinationsdb-skip0-limit100-countrynone-listdestinationindb"><code>get_destinations(db, skip=0, limit=100, country=None) -&gt; list[DestinationInDB]</code><a class="headerlink" href="#get_destinationsdb-skip0-limit100-countrynone-listdestinationindb" title="Permanent link">&para;</a></h3>
+<p>Получение списка направлений, сортировка по популярности.</p>
+<h3 id="search_destinationsdb-query_text-listdestination"><code>search_destinations(db, query_text) -&gt; List[Destination]</code><a class="headerlink" href="#search_destinationsdb-query_text-listdestination" title="Permanent link">&para;</a></h3>
+<p>Поиск направлений по названию и описанию (ilike).</p>
+<h3 id="create_destinationdb-name-country-descriptionnone-latitudenone-longitudenone-destination"><code>create_destination(db, name, country, description=None, latitude=None, longitude=None) -&gt; Destination</code><a class="headerlink" href="#create_destinationdb-name-country-descriptionnone-latitudenone-longitudenone-destination" title="Permanent link">&para;</a></h3>
+<p>Создание направления.</p>
+<h3 id="update_destinationdb-destination-destination-kwargs-destination"><code>update_destination(db, destination: Destination, **kwargs) -&gt; Destination</code><a class="headerlink" href="#update_destinationdb-destination-destination-kwargs-destination" title="Permanent link">&para;</a></h3>
+<p>Обновление направления.</p>
+<h3 id="update_popularitydb-destination-destination-incrementtrue-destination"><code>update_popularity(db, destination: Destination, increment=True) -&gt; Destination</code><a class="headerlink" href="#update_popularitydb-destination-destination-incrementtrue-destination" title="Permanent link">&para;</a></h3>
+<p>Обновление популярности.</p>
+<h3 id="delete_destinationdb-destination-destination-none"><code>delete_destination(db, destination: Destination) -&gt; None</code><a class="headerlink" href="#delete_destinationdb-destination-destination-none" title="Permanent link">&para;</a></h3>
+<p>Удаление направления.</p>
+<h2 id="message">Функции для Message<a class="headerlink" href="#message" title="Permanent link">&para;</a></h2>
+<h3 id="get_message_by_iddb-message_id-optionalmessage"><code>get_message_by_id(db, message_id) -&gt; Optional[Message]</code><a class="headerlink" href="#get_message_by_iddb-message_id-optionalmessage" title="Permanent link">&para;</a></h3>
+<p>Получение сообщения по ID с отправителем и получателем.</p>
+<h3 id="get_messages_for_tripdb-trip_id-skip0-limit50-listmessage"><code>get_messages_for_trip(db, trip_id, skip=0, limit=50) -&gt; List[Message]</code><a class="headerlink" href="#get_messages_for_tripdb-trip_id-skip0-limit50-listmessage" title="Permanent link">&para;</a></h3>
+<p>Получение сообщений поездки (сортировка по убыванию created_at).</p>
+<h3 id="get_messages_between_usersdb-user1_id-user2_id-trip_idnone-skip0-limit50-listmessage"><code>get_messages_between_users(db, user1_id, user2_id, trip_id=None, skip=0, limit=50) -&gt; List[Message]</code><a class="headerlink" href="#get_messages_between_usersdb-user1_id-user2_id-trip_idnone-skip0-limit50-listmessage" title="Permanent link">&para;</a></h3>
+<p>Получение сообщений между двумя пользователями.</p>
+<h3 id="create_messagedb-content-trip_id-sender_id-receiver_id-message"><code>create_message(db, content, trip_id, sender_id, receiver_id) -&gt; Message</code><a class="headerlink" href="#create_messagedb-content-trip_id-sender_id-receiver_id-message" title="Permanent link">&para;</a></h3>
+<p>Создание сообщения.</p>
+<h3 id="delete_messagedb-message-message-none"><code>delete_message(db, message: Message) -&gt; None</code><a class="headerlink" href="#delete_messagedb-message-message-none" title="Permanent link">&para;</a></h3>
+<p>Удаление сообщения.</p>
+<h2 id="review">Функции для Review<a class="headerlink" href="#review" title="Permanent link">&para;</a></h2>
+<h3 id="get_review_by_iddb-review_id-optionalreview"><code>get_review_by_id(db, review_id) -&gt; Optional[Review]</code><a class="headerlink" href="#get_review_by_iddb-review_id-optionalreview" title="Permanent link">&para;</a></h3>
+<p>Получение отзыва по ID с автором, объектом и поездкой.</p>
+<h3 id="get_reviews_for_userdb-user_id-skip0-limit100-listreview"><code>get_reviews_for_user(db, user_id, skip=0, limit=100) -&gt; List[Review]</code><a class="headerlink" href="#get_reviews_for_userdb-user_id-skip0-limit100-listreview" title="Permanent link">&para;</a></h3>
+<p>Получение отзывов о пользователе.</p>
+<h3 id="get_reviews_by_reviewerdb-reviewer_id-skip0-limit100-listreview"><code>get_reviews_by_reviewer(db, reviewer_id, skip=0, limit=100) -&gt; List[Review]</code><a class="headerlink" href="#get_reviews_by_reviewerdb-reviewer_id-skip0-limit100-listreview" title="Permanent link">&para;</a></h3>
+<p>Получение отзывов пользователя.</p>
+<h3 id="get_review_for_tripdb-trip_id-reviewer_id-reviewed_user_id-optionalreview"><code>get_review_for_trip(db, trip_id, reviewer_id, reviewed_user_id) -&gt; Optional[Review]</code><a class="headerlink" href="#get_review_for_tripdb-trip_id-reviewer_id-reviewed_user_id-optionalreview" title="Permanent link">&para;</a></h3>
+<p>Получение отзыва для конкретной поездки.</p>
+<h3 id="create_reviewdb-trip_id-reviewer_id-reviewed_user_id-rating-commentnone-review"><code>create_review(db, trip_id, reviewer_id, reviewed_user_id, rating, comment=None) -&gt; Review</code><a class="headerlink" href="#create_reviewdb-trip_id-reviewer_id-reviewed_user_id-rating-commentnone-review" title="Permanent link">&para;</a></h3>
+<p>Создание отзыва.</p>
+<h3 id="update_reviewdb-review-review-kwargs-review"><code>update_review(db, review: Review, **kwargs) -&gt; Review</code><a class="headerlink" href="#update_reviewdb-review-review-kwargs-review" title="Permanent link">&para;</a></h3>
+<p>Обновление отзыва.</p>
+<h3 id="delete_reviewdb-review-review-none"><code>delete_review(db, review: Review) -&gt; None</code><a class="headerlink" href="#delete_reviewdb-review-review-none" title="Permanent link">&para;</a></h3>
+<p>Удаление отзыва.</p>
+<h3 id="get_user_ratingdb-user_id-float"><code>get_user_rating(db, user_id) -&gt; float</code><a class="headerlink" href="#get_user_ratingdb-user_id-float" title="Permanent link">&para;</a></h3>
+<p>Получение среднего рейтинга пользователя.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.top", "search.highlight", "search.suggest", "toc.follow", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

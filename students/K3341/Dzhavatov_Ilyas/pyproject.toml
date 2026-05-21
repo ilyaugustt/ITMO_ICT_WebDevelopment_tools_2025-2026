@@ -17,6 +17,7 @@ bs4 = "^0.0.2"
 requests = "^2.34.2"
 aiohttp = "^3.13.5"
 mkdocs-material = "^9.7.6"
+mkdocstrings = {extras = ["python"], version = "^0.26.1"}
 
 
 [build-system]
