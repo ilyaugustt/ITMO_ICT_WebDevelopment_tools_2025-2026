@@ -1,12 +1,12 @@
-name: Deploy Documentation to GitHub Pages
+name: Deploy MkDocs to GitHub Pages
 
 on:
   push:
     branches:
       - main
     paths:
-      - 'lr_1/docs/**'
-      - 'lr_1/mkdocs.yml'
+      - 'docs/**'
+      - 'mkdocs.yml'
       - '.github/workflows/deploy-docs.yml'
   workflow_dispatch:
 
@@ -31,31 +31,14 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
-        with:
-          version: latest
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-
-      - name: Load cached venv
-        id: cached-poetry-dependencies
-        uses: actions/cache@v4
-        with:
-          path: .venv
-          key: venv-${{ runner.os }}-${{ hashFiles('lr_1/poetry.lock') }}
-
-      - name: Install dependencies
-        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-        run: poetry install
-        working-directory: lr_1
-
-      - name: Install mkdocs-material
-        run: poetry add mkdocs-material
+      - name: Install MkDocs and Material theme
+        run: pip install mkdocs-material
 
       - name: Build MkDocs
-        run: |
-          poetry run mkdocs build -f mkdocs.yml -d site
+        run: mkdocs build -f mkdocs.yml -d site
+
+      - name: Add .nojekyll to disable Jekyll
+        run: echo "" > site/.nojekyll
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
