@@ -1,0 +1,139 @@
+version: '3.8'
+
+services:
+  # =============================================================================
+  # PostgreSQL Database
+  # =============================================================================
+  postgres:
+    image: postgres:15-alpine
+    container_name: lr3_postgres
+    environment:
+      POSTGRES_DB: travel
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app_network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  # =============================================================================
+  # Travel Service (lr_1)
+  # =============================================================================
+  travel:
+    build:
+      context: ./travel/lr_1
+      dockerfile: Dockerfile
+    container_name: lr3_travel
+    ports:
+      - "8001:8000"
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/travel
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:-supersecretkey123}
+      JWT_ALGORITHM: HS256
+      JWT_EXPIRE_MINUTES: 30
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - app_network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # =============================================================================
+  # Redis - брокер сообщений для Celery
+  # =============================================================================
+  redis:
+    image: redis:7-alpine
+    container_name: lr3_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    networks:
+      - app_network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+  # =============================================================================
+  # Parser Service (FastAPI)
+  # =============================================================================
+  parser:
+    build:
+      context: ./parser
+      dockerfile: Dockerfile
+    container_name: lr3_parser
+    ports:
+      - "8002:8000"
+    environment:
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/0
+      CELERY_RESULT_BACKEND: redis://redis:6379/0
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - app_network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # =============================================================================
+  # Celery Worker - фоновая обработка задач парсинга
+  # =============================================================================
+  celery_worker:
+    build:
+      context: ./parser
+      dockerfile: Dockerfile
+    container_name: lr3_celery_worker
+    command: celery -A celery_config worker --loglevel=info --concurrency=2 --pool=prefork
+    environment:
+      PYTHONPATH: /app
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/0
+      CELERY_RESULT_BACKEND: redis://redis:6379/0
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - app_network
+    restart: unless-stopped
+
+# =============================================================================
+# Сеть
+# =============================================================================
+networks:
+  app_network:
+    driver: bridge
+
+# =============================================================================
+# Тома для данных
+# =============================================================================
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local

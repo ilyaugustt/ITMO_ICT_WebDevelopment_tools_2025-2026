@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "parser"
+version = "0.1.0"
+description = ""
+authors = ["Ilyas Djavatov"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = {extras = ["all"], version = "^0.136.1"}
+pydantic = "^2.13.4"
+bs4 = "^0.0.2"
+requests = "^2.34.2"
+celery = {extras = ["redis"], version = "^5.4.0"}
+redis = "^5.0.8"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
